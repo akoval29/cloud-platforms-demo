@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Link from "next/link";
-
 const card = "glass glass-hover group relative p-6";
 
 export default function HomePage() {
