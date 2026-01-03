@@ -1,0 +1,30 @@
+/* styles/globals.css */
+@import "tailwindcss";
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply min-h-screen bg-slate-950 text-slate-100 antialiased;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply rounded-2xl border border-white/10 bg-white/5 shadow-sm ring-1 ring-white/10 backdrop-blur;
+  }
+
+  .glass-hover {
+    @apply transition hover:-translate-y-0.5 hover:bg-white/10;
+  }
+
+  .glass-btn {
+    @apply rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-slate-200 backdrop-blur transition hover:bg-white/10;
+  }
+
+  .glass-primary {
+    @apply rounded-xl bg-white px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-slate-200;
+  }
+}
