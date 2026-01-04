@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Link from "next/link";
-
 const card = "glass glass-hover group relative p-6";
 
 export default function HomePage() {
@@ -22,7 +21,7 @@ export default function HomePage() {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <Link href="/platforms" className="glass-primary">
-              Перейти до платформ
+              Перейти на платформи
             </Link>
             <Link href="/server-time" className="glass-btn px-4 py-2">
               Подивитись SSR time
