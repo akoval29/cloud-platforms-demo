@@ -1,3 +1,4 @@
+// pages/index.tsx
 import Head from "next/head";
 import Link from "next/link";
 const card = "glass glass-hover group relative p-6";
@@ -46,7 +47,7 @@ export default function HomePage() {
             },
             {
               title: "API: /api/ping",
-              desc: 'Повертає JSON: {"message":"pong"}.',
+              desc: 'Повертає JSON рядок: {"message":"pong"}.',
               href: "/api/ping",
             },
           ].map((x) => (

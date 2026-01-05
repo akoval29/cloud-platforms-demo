@@ -1,3 +1,4 @@
+// pages/platforms.tsx
 import Head from "next/head";
 
 const platforms = [

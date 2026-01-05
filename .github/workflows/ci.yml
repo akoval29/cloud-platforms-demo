@@ -9,12 +9,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
@@ -25,3 +24,35 @@ jobs:
 
       - name: Build
         run: npm run build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    # деплоїмо тільки коли це push в master (не PR)
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    steps:
+      - name: Deploy to VPS via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: 22
+          script: |
+            set -e
+
+            # 1) Забрати/оновити код
+            if [ ! -d "$HOME/cloud-platforms-demo/.git" ]; then
+              git clone https://github.com/akoval29/cloud-platforms-demo.git "$HOME/cloud-platforms-demo"
+            fi
+
+            cd "$HOME/cloud-platforms-demo"
+            git checkout master
+            git pull
+
+            # 2) Перезібрати і перезапустити контейнер
+            docker build -t cloud-platforms-demo .
+            docker rm -f cloud-platforms-demo || true
+            docker run -d --name cloud-platforms-demo --restart=always -p 80:3000 cloud-platforms-demo
+
+            docker ps
