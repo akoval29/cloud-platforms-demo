@@ -2,7 +2,7 @@
 import Head from "next/head";
 
 const platforms = [
-  { name: "Netlify", desc: "Хостинг, CI/CD, превʼю деплої, edge-фічі." },
+  { name: "Google Cloud", desc: "Хостинг, CI/CD, превʼю деплої, edge-фічі." },
   {
     name: "AWS Amplify",
     desc: "Деплой, auth, бекенд-інтеграції для web/mobile.",
