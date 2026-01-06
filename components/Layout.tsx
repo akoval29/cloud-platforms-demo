@@ -23,6 +23,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
             Cloud Platforms Demo
           </Link>
 
+          <span className="text-white font-medium">
+            {process.env.NEXT_PUBLIC_PLATFORM_NAME ?? "unknown"}
+          </span>
+
           <nav className="flex items-center gap-2">
             {nav.map(([label, href]) => (
               <Link key={href} href={href} className="glass-btn">

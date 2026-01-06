@@ -45,8 +45,13 @@ jobs:
       - name: Build & Push image
         run: |
           IMAGE="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_AR_REPO }}/cloud-platforms-demo:${{ github.sha }}"
-          docker build -t "$IMAGE" .
+
+          docker build \
+          --build-arg NEXT_PUBLIC_PLATFORM_NAME="${{ secrets.GCP_PLATFORM_NAME }}" \
+          -t "$IMAGE" .
+
           docker push "$IMAGE"
+
           echo "IMAGE=$IMAGE" >> $GITHUB_ENV
 
       - name: Deploy to Cloud Run

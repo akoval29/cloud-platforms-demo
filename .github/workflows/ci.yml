@@ -54,7 +54,10 @@ jobs:
             git reset --hard origin/master
             git clean -fd
 
-            docker build -t cloud-platforms-demo .
+            docker build \
+            --build-arg NEXT_PUBLIC_PLATFORM_NAME="${{ secrets.VPS_PLATFORM_NAME }}" \
+            -t cloud-platforms-demo .
+
             docker rm -f cloud-platforms-demo 2>/dev/null || true
             docker run -d --name cloud-platforms-demo --restart=always -p 80:3000 cloud-platforms-demo
 
