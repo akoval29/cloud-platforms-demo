@@ -37,7 +37,7 @@ export default function HomePage() {
           {[
             {
               title: "Platforms",
-              desc: "Netlify, AWS Amplify, Firebase у вигляді карток.",
+              desc: "Google Cloud (Cloud Run), AWS EC2, Firebase, AWS Amplify у вигляді карток.",
               href: "/platforms",
             },
             {
